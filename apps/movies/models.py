@@ -8,6 +8,7 @@ class Movie(models.Model):
     release_date = models.DateField()
     director = models.CharField(max_length=100)
     description = models.TextField()
+    rating = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
 
     def __str__(self):
         return self.title
