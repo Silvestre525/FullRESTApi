@@ -7,4 +7,5 @@ APPS = [
     'django.contrib.staticfiles',
     'apps.movies',
     'apps.series',
+    'drf_yasg',
 ]
