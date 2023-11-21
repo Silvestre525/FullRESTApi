@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = APPS
 
+'Configuracion de Rest Framework para authentication'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -73,14 +74,6 @@ TEMPLATES = [
 
 
 
-'Configuracion de Rest Framework para authentication'
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # Habilita la autenticación de tokens
-        ],
-}
-
 WSGI_APPLICATION = 'api_full_rest.wsgi.application'
 
 
@@ -90,7 +83,7 @@ WSGI_APPLICATION = 'api_full_rest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'api_personal',
+        'NAME': 'api_local',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',  # O la dirección IP del servidor de la base de datos
