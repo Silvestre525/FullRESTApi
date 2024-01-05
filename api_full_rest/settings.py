@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = APPS
 
-'Configuracion de Rest Framework para authentication'
+""" 'Configuracion de Rest Framework para authentication'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -41,7 +41,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated', 
     ),
 }
-
+ """
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -2,7 +2,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from .models import Movie
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from .serializer import MovieDetailSerializer # Asegúrate de importar MovieDetailSerializer
 
 
@@ -13,9 +13,8 @@ class MovieViewSet(viewsets.ModelViewSet):
     # Otras acciones CRUD generadas automáticamente por ModelViewSet...
 
 
-   
 
-
+    """ Generador de Reportes """
     @action(detail=False, methods=['GET'])
     def generar_reporte(self, request, rating=None):
         try:
