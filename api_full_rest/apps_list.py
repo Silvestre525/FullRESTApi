@@ -8,6 +8,7 @@ APPS = [
     'apps.movies',
     'apps.series',
     'apps.users',
+    'apps.login',
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
