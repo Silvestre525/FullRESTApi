@@ -4,7 +4,7 @@ from rest_framework import viewsets, status
 from .models import Movie
 from django.http import JsonResponse
 from .serializer import MovieDetailSerializer # Asegúrate de importar MovieDetailSerializer
-
+from apps.permissions.permissions import IsSuperUser, IsUser, IsTeacher, IsAdministrative, IsSelf
 
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
@@ -13,6 +13,14 @@ class MovieViewSet(viewsets.ModelViewSet):
     # Otras acciones CRUD generadas automáticamente por ModelViewSet...
 
 
+
+    def get_permissions(self):
+        if self.action == 'destroy':
+            permission_classes = [IsSuperUser]
+        else:
+            permission_classes = []  # Permisos predeterminados
+
+        return [permission() for permission in permission_classes]
 
     """ Generador de Reportes """
     @action(detail=False, methods=['GET'])

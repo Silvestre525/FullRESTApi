@@ -9,6 +9,8 @@ APPS = [
     'apps.series',
     'apps.users',
     'apps.login',
+    'apps.permissions',
+    'apps.roles',
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
