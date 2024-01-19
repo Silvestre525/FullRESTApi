@@ -3,24 +3,18 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from .models import Movie
 from django.http import JsonResponse
-from .serializer import MovieDetailSerializer # Asegúrate de importar MovieDetailSerializer
-from apps.permissions.permissions import IsSuperUser, IsUser, IsTeacher, IsAdministrative, IsSelf
+from .serializer import MovieDetailSerializer
+from rest_framework.authentication import TokenAuthentication  # Puedes usar la autenticación que desees
+from rest_framework.permissions import IsAuthenticated  # Puedes ajustar los permisos según tus necesidades
 
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieDetailSerializer
 
-    # Otras acciones CRUD generadas automáticamente por ModelViewSet...
+    
+    authentication_classes = [TokenAuthentication]  # Agrega la autenticación que deseas
+    permission_classes = [IsAuthenticated]  # Ajusta los permisos según tus necesidades
 
-
-
-    def get_permissions(self):
-        if self.action == 'destroy':
-            permission_classes = [IsSuperUser]
-        else:
-            permission_classes = []  # Permisos predeterminados
-
-        return [permission() for permission in permission_classes]
 
     """ Generador de Reportes """
     @action(detail=False, methods=['GET'])

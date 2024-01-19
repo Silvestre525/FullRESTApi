@@ -7,13 +7,10 @@ APPS = [
     'django.contrib.staticfiles',
     'apps.movies',
     'apps.series',
-    'apps.users',
+    'apps.userss',
     'apps.login',
-    'apps.permissions',
-    'apps.roles',
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'rest_framework_simplejwt'
 ]

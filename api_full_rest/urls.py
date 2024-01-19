@@ -24,8 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('movies/', include("apps.movies.urls")),
     path('series/', include("apps.series.urls")),
-    path('users/', include("apps.users.urls")),
-    path('login/', include("apps.login.urls")),
+    path('users/', include("apps.userss.urls")),
+    path('login/', include("apps.login.urls")), 
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
+
