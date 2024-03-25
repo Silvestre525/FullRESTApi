@@ -5,11 +5,11 @@ from django.core.validators import MaxLengthValidator
 
 class MovieDetailSerializer(serializers.ModelSerializer):
 
-    # Agrega una validación personalizada al campo 'title'
+    """     # Agrega una validación personalizada al campo 'title'
     title = serializers.CharField(
         max_length=50,
         validators=[MaxLengthValidator(limit_value=50, message='El título no debe superar los 50 caracteres.')]
-    )
+    ) """
 
     class Meta:
         model = Movie
