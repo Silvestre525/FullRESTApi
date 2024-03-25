@@ -7,7 +7,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=200, db_column="title")
     release_date = models.DateField(db_column="release_date")
     director = models.CharField(max_length=100, db_column="director")
-    description = models.TextField(db_column="description")
+    description = models.TextField(db_column="description", null=True)
     rating = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True,db_column="rating")
 
     class Meta:
