@@ -45,8 +45,7 @@ class MovieViewSet(viewsets.ModelViewSet):
     """ Metodo para filtrar peliculas mayores al año 2010"""
     @action(detail=False, methods=['GET'])
     def filtrar(self, *args, **kwargs):
-        fecha_filtrados = date(2010, 1, 1)
-        queryset = Movie.objects.filter(release_date__gte=fecha_filtrados)
+        queryset = Movie.objects.filter(premios__gte=3)
         serializer = MovieDetailSerializer(queryset, many = True)
         return Response(serializer.data)
 
@@ -63,7 +62,7 @@ class MovieViewSet(viewsets.ModelViewSet):
                 return Response({"error":"No se encontro ningún archivo"}, status=status.HTTP_400_BAD_REQUEST)
 
             if not file_1.name.endswith('.xls') and not file_1.name.endswith('.xlsx'):
-                return Response({"error": "El archivo no es un archivo Excel válido"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "El archivo no se encuentra en un formato valido Excel válido"}, status=status.HTTP_400_BAD_REQUEST)
 
             df = pd.read_excel(file_1)
             
@@ -75,10 +74,10 @@ class MovieViewSet(viewsets.ModelViewSet):
             for index, row in df.iterrows():
                 movie_data = {
                     'title': row['title'],
-                    'description': row['description'],
                     'genero': row['genero'],
                     'rating': row['rating'],
                     'premios': row['premios'],
+                    'director': row['director'],
                 }
 
                 serializer = MovieDetailSerializer(data=movie_data)

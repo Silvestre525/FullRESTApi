@@ -10,4 +10,5 @@ class SeriesSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = Series
-        fields = ('id', 'title', 'release_date')
+        fields = ("__all__")
+        
