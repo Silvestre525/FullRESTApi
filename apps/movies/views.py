@@ -8,6 +8,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated  
 from datetime import date
 import pandas as pd
+from drf_yasg.utils import swagger_auto_schema
 
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
@@ -19,6 +20,7 @@ class MovieViewSet(viewsets.ModelViewSet):
 
 
     """ Generador de Reportes """
+    @swagger_auto_schema(method="GET", query_serializer=MovieDetailSerializer)
     @action(detail=False, methods=['GET'])
     def generar_reporte(self, request, rating=None):
         try:
@@ -43,6 +45,7 @@ class MovieViewSet(viewsets.ModelViewSet):
    
 
     """ Metodo para filtrar peliculas mayores al año 2010"""
+    @swagger_auto_schema(method="GET", query_serializer=MovieDetailSerializer)
     @action(detail=False, methods=['GET'])
     def filtrar(self, *args, **kwargs):
         queryset = Movie.objects.filter(premios__gte=3)
@@ -51,6 +54,7 @@ class MovieViewSet(viewsets.ModelViewSet):
 
 
     """Metodo para cargar peliculas que se encuentran en un Excel"""
+    @swagger_auto_schema(method="POST", query_serializer=MovieDetailSerializer)
     @action(detail=False, methods=['POST'])
     def cargar_movies(self, request):
 
