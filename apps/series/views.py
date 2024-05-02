@@ -7,6 +7,7 @@ from .serializer import SeriesSerializer
 from rest_framework.authentication import TokenAuthentication  
 from rest_framework.permissions import IsAuthenticated  
 import pandas as pd
+from drf_yasg.utils import swagger_auto_schema
 
 class SeriesViewSet(viewsets.ModelViewSet):
     queryset = Series.objects.all()
@@ -20,8 +21,8 @@ class SeriesViewSet(viewsets.ModelViewSet):
 
 
     """"Carga de series medinte archivo excel"""
-    @action(detail = False, method = ['POST'])
-    def carga_series(self,request):
+    @action(detail = False, method = ['post'])
+    def carga_series_excel(self,request):
 
         try:
             file_1 = request.FILES.get('carga_series')
