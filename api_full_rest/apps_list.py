@@ -13,4 +13,5 @@ APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'apps.check_files',
 ]
