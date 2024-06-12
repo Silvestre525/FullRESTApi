@@ -10,6 +10,13 @@ from datetime import date
 import pandas as pd
 from drf_yasg.utils import swagger_auto_schema
 
+"""Generador para paginar movies de la bd"""
+def movie_generator(queryset, page_size):
+    for i in range(0,queryset.count(), page_size):
+        yield queryset[i:i + page_size]
+
+
+
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieDetailSerializer
@@ -18,6 +25,24 @@ class MovieViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]  # Agrega la autenticación que deseas
     permission_classes = [IsAuthenticated]  # Ajusta los permisos según tus necesidades
 
+    @swagger_auto_schema(method="GET", query_serializer=MovieDetailSerializer)
+    @action(detail=False, methods=['GET'])
+    def list(self, reequest, *args, **kwargs):
+        page_size = 100
+        queryset = self.get_queryset()
+        generator = movie_generator(queryset, page_size)
+
+        data = []
+        try:
+            # Obtener solo una página de datos en cada iteración
+            page = next(generator)
+            serializer = self.get_serializer(page, many=True)
+            data.extend(serializer.data)
+        except StopIteration:
+            pass  # El generador se detiene cuando no hay más datos
+        
+
+        return Response(data)
 
     """ Generador de Reportes """
     @swagger_auto_schema(method="GET", query_serializer=MovieDetailSerializer)
